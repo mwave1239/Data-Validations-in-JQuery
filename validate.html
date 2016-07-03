@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JQuery Accordian and Tabs</title>
+
+		<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+		<script type="text/javascript" src='https://code.jquery.com/jquery-1.9.1.js'></script>
+		<script type="text/javascript" src='https://code.jquery.com/ui/1.10.3/jquery-ui.js'></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("#datefrom").datepicker();
+			$("#dateto").datepicker();
+
+			$("form").on("submit", function(){
+				var errors = [];
+				var name = $("#name").val();
+				var dateto = $("#dateto").val();
+				var datefrom = $("#datefrom").val();
+
+				if(datefrom == ""){
+					errors.push("Date from needs a value");
+				}
+
+				if(dateto == ""){
+					errors.push("Date to needs a value");
+				}
+
+				if(name == ""){
+					errors.push("Name needs a value");
+				}
+				if(errors.length > 0) {
+					$("#message").html("");
+					for(var i in errors){
+						$("#message").append("<p id='error_message'>"+errors[i]+"</p>");
+					}
+				}
+				else {
+					alert("Thank you " + name + ", your cruise leaves " + datefrom + " and returns " + dateto + ".");
+				}
+
+				return false;
+			});
+
+			
+		});	
+
+
+		</script>
+
+	</head>
+
+	<body>
+
+	<div id="container">
+		<h1>Welcome to the Plan-a-Cruise app!</h1>
+		<form>
+			<p><input type="text" id="datefrom" placeholder="Date From:"></p>
+			<p><input type="text" id="dateto" placeholder="Date To:"></p>
+			<p><input type="text" id="name" placeholder="Name:"></p>
+			<p><input type="submit" name="Check Dates!" class="btn btn-success"></p>
+		</form>
+		<div id="message"></div>
+	</div>
+	</body>
+
+</html>
